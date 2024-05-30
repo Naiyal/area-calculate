@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Area calculate</string>
+
+    <string-array name="shapes">
+        <item>Select shap</item>
+        <item>Rectangle</item>
+        <item>Circle</item>
+        <item>Triangle</item>
+
+    </string-array>
+
+
+</resources>
