@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        Toast.makeText(getBaseContext(), "onCreate", Toast.LENGTH_LONG).show();
         // inflate items
         Spinner spinner = findViewById(R.id.spinner);
         EditText et1 = findViewById(R.id.editTextNumberDecimal1);//Rectangle
@@ -129,5 +130,41 @@ public class MainActivity extends AppCompatActivity {
         }
 
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(getBaseContext(),"OnStart",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(getBaseContext(),"OnResume",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(getBaseContext(),"OnPause",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(getBaseContext(), "OnStop", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getBaseContext(), "OnDestroy", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(getBaseContext(), "OnRestart", Toast.LENGTH_LONG).show();
     }
 }
