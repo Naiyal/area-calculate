@@ -4,6 +4,7 @@ import static android.widget.AdapterView.*;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -14,13 +15,15 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
+    double area =0;
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        Bundle b = new Bundle();
+        b.putString("name","Fahed");
+        b.putInt("age",23);
+
+
+
+
+
         Toast.makeText(getBaseContext(), "onCreate", Toast.LENGTH_LONG).show();
         // inflate items
         Spinner spinner = findViewById(R.id.spinner);
@@ -41,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         EditText et4 = findViewById(R.id.editTextNumberDecimal4);//Triangle
         EditText et5 = findViewById(R.id.editTextNumberDecimal5);
 
-        TextView tv = findViewById(R.id.textView);
+        tv = findViewById(R.id.textView);
 
         Button btn = findViewById(R.id.button);
         //circle -> pi * r * r
@@ -96,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     int x = spinner.getSelectedItemPosition();
-                    double area =0;
+
                     switch (x){
                         case 0:
                             tv.setText("Please select shape");
@@ -165,6 +176,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Toast.makeText(getBaseContext(), "OnRestart", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "onRestart", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("area",tv.getText().toString());
+        Toast.makeText(getBaseContext(), "on Save Instance State", Toast.LENGTH_LONG).show();
+
+    }
+/*android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"
+* */
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+
+        String y = savedInstanceState.getString("area");
+        tv.setText(y);
+
+        Toast.makeText(getBaseContext(), "on Restore Instance State", Toast.LENGTH_LONG).show();
+
     }
 }
